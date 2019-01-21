@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="rails_devise_token_auth_development@localhost" uuid="69fcf6dc-abbe-4bff-8c51-d58cc3f08421">
+      <database-info product="PostgreSQL" version="11.1" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.2.2">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>chatroom</user-name>
+      <introspection-schemas>rails_devise_token_auth_development:public</introspection-schemas>
+    </data-source>
+  </component>
+</project>

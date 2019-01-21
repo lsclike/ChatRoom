@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class User < ActiveRecord::Base
+  has_many :comments
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and
   devise :database_authenticatable, :registerable,
