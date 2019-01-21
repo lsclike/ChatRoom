@@ -14,11 +14,15 @@ import {  MatTableModule,
   MatProgressSpinnerModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from './service/api.service';
+import { UserComponent } from './user/user.component';
+import { CommentsComponent } from './comments/comments.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SignInComponent
+    SignInComponent,
+    UserComponent,
+    CommentsComponent
   ],
   imports: [
     BrowserModule,

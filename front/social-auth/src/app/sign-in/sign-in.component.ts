@@ -16,10 +16,12 @@ export class SignInComponent implements OnInit {
       this.user = user;
     });
   }
-
+  testApi(): void {
+    this.apiService.get('auth/hello').subscribe(res => console.log(res));
+  }
   signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(
-      userData => console.log(userData)
+      userData => this.apiService.post('auth/request', {id_token: userData.idToken}).subscribe()
     );
   }
 
