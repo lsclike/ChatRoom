@@ -1,4 +1,36 @@
+<nav class="navbar-nav navbar-expand navbar-dark bg-dark">
+  <div class="navbar-header">
+    <div class="nav-item navbar-brand">
+      <h4>ChatRoom</h4>
+    </div>
+  </div>
+  <div class="navbar-item navbar-brand mr-auto"></div>
+  <div *ngIf="!user">
+    <div class="navbar-item navbar-brand">
+      <button class="btn btn-social-icon btn-google mx-1" (click)="signInWithGoogle()"><span class="fa fa-google"></span></button>
+    </div>
+  </div>
+  <div *ngIf="user">
+    <div class="navbar-item navbar-brand">
+      <button class="btn btn-danger" (click)="signOut()">Sign out</button>
+    </div>
+  </div>
 
+</nav>
 
-<app-sign-in></app-sign-in>
+<div class="container" >
+  <div class="row">
+    <div class="col-md-6">
+      <mat-card>
+        <app-user></app-user>
+      </mat-card>
+    </div>
+    <div class="col-md-6">
+      <mat-card>
+        <app-comments></app-comments>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
 <router-outlet></router-outlet>

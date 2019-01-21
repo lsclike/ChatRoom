@@ -12,7 +12,6 @@ class AuthorizationController < ApplicationController
     byebug
     parsed_response = HTTParty.get(url).parsed_response
     @user = User.create_user_for_google(parsed_response)
-    tokens = @user.create_new_auth_token
     @user.save
     set_headers(parsed_response)
     render json: { status: 'Signed in successfully with google'}
@@ -26,9 +25,5 @@ class AuthorizationController < ApplicationController
     # headers['uid'] =@user.uid
     # headers['token-type'] = (tokens['token-type']).to_s
     headers['expire_at'] = parsed_response["exp"].to_s
-  end
-
-  def user_params
-    params.require(:user).permit(:name, :email, :id_token, :image)
   end
 end
