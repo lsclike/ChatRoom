@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
       user.provider="google_oauth2"
       user.uid=data["email"]
       user.email=data["email"]
+      user.name=data["name"]
       user.password=Devise.friendly_token[0,20]
       user.password_confirmation=user.password
       user.save!
