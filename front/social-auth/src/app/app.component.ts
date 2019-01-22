@@ -7,7 +7,7 @@ import {ApiService} from './service/api.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   title = 'ChatRoom';
   user: SocialUser;
   constructor(private authService: AuthService, private apiService: ApiService) { }
@@ -19,11 +19,12 @@ export class AppComponent implements OnInit{
 
   signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(
-      userData => this.apiService.post('auth/request', {id_token: userData.idToken}).subscribe()
+      userData => this.apiService.post('users/auth', {id_token: userData.idToken}).subscribe()
     );
   }
 
   signOut(): void {
+    this.apiService.post('users/sign_out', {email: this.user.email}).subscribe();
     this.authService.signOut();
   }
 }

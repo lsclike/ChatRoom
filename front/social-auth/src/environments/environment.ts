@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   apiUrl: 'http://localhost:3001/api',
-  webSocketUrl: 'http://localhost:3001/cable'
+  webSocketUrl: 'localhost:3001/cable'
 };
 
 /*

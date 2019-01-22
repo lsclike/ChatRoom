@@ -6,6 +6,9 @@ Rails.application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
+  # allow origin for websocket
+  Rails.application.config.action_cable.allowed_request_origins = [%r{https?://\S+}]
+
   # Do not eager load code on boot.
   config.eager_load = false
 

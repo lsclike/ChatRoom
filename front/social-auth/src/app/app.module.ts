@@ -18,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from './service/api.service';
 import { UserComponent } from './user/user.component';
 import { CommentsComponent } from './comments/comments.component';
+import {ActionCableServiceService} from './service/action-cable-service.service';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { CommentsComponent } from './comments/comments.component';
   providers: [{
     provide: AuthServiceConfig,
     useFactory: getAuthServiceConfigs},
-    ApiService
+    ApiService,
+    ActionCableServiceService
     ],
   bootstrap: [AppComponent]
 })

@@ -21,7 +21,7 @@ export class SignInComponent implements OnInit {
   }
   signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(
-      userData => this.apiService.post('auth/request', {id_token: userData.idToken}).subscribe()
+      userData => this.apiService.post('users/request', {id_token: userData.idToken}).subscribe()
     );
   }
 
