@@ -7,7 +7,7 @@ import {environment} from '../../environments/environment';
 })
 export class ActionCableServiceService {
   public userSub: ActionCable.Channel;
-  public receivedUserData: ReplaySubject<any> = new ReplaySubject(1);
+  public receivedUserData: ReplaySubject<any> = new ReplaySubject(2);
   constructor() {
     this.Init();
   }

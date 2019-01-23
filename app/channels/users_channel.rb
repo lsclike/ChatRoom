@@ -8,10 +8,17 @@ class UsersChannel < ApplicationCable::Channel
     # Any cleanup needed when channel is unsubscribed
   end
 
-  def all
-    @users = User.all
+  def login(data)
     response = Hash.new
-    response['number'] = @users.length
+    response['user'] = data['user']
+    response['action'] = 'login'
+    ActionCable.server.broadcast('users', response)
+  end
+
+  def sign_out(data)
+    response = Hash.new
+    response['email'] = data['email']
+    response['action'] = 'sign_out'
     ActionCable.server.broadcast('users', response)
   end
 end

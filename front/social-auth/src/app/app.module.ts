@@ -6,19 +6,22 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider } from 'angularx-social-login';
 import { getAuthServiceConfigs } from './socialLoginConfig';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {  MatTableModule,
-  MatInputModule,
-  MatCardModule,
-  MatButtonModule,
-  MatPaginatorModule,
-  MatSortModule,
-  MatToolbarModule,
-  MatProgressSpinnerModule } from '@angular/material';
+import {
+        MatTableModule,
+        MatInputModule,
+        MatCardModule,
+        MatButtonModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatToolbarModule,
+        MatProgressSpinnerModule,
+  } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from './service/api.service';
 import { UserComponent } from './user/user.component';
 import { CommentsComponent } from './comments/comments.component';
 import {ActionCableServiceService} from './service/action-cable-service.service';
+import {UsersService} from './service/users.service';
 
 @NgModule({
   declarations: [
@@ -46,7 +49,8 @@ import {ActionCableServiceService} from './service/action-cable-service.service'
     provide: AuthServiceConfig,
     useFactory: getAuthServiceConfigs},
     ApiService,
-    ActionCableServiceService
+    ActionCableServiceService,
+    UsersService
     ],
   bootstrap: [AppComponent]
 })

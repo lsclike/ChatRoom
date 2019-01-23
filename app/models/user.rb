@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   end
 
   def sign_out
-    self.last_sign_in_at = Time.new
+    self.last_sign_in_at = self.current_sign_in_at
     self.save
   end
 
