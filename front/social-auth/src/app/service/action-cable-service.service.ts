@@ -7,7 +7,9 @@ import {environment} from '../../environments/environment';
 })
 export class ActionCableServiceService {
   public userSub: ActionCable.Channel;
+  public commentSub: ActionCable.Channel;
   public receivedUserData: ReplaySubject<any> = new ReplaySubject(2);
+  public receivedCommentData: ReplaySubject<any> = new ReplaySubject(2);
   constructor() {
     this.Init();
   }
@@ -25,12 +27,27 @@ export class ActionCableServiceService {
         this.receivedUserData.next(data);
       }
     });
+    this.commentSub = cable.subscriptions.create('CommentsChannel', {
+      connected: () => {
+        console.log('connected to comments channel');
+      },
+      disconnected: () => {
+        console.log('disconnected from comments channel');
+      },
+      received: (data) => {
+        this.receivedCommentData.next(data);
+      }}) ;
   }
   getUserSub(): ActionCable.Channel {
     return this.userSub;
   }
-
   subscribeToUserSocket(): ReplaySubject<any> {
     return this.receivedUserData;
+  }
+  getCommentSub(): ActionCable.Channel {
+    return this.commentSub;
+  }
+  subscribeToCommentSocket(): ReplaySubject<any> {
+    return this.receivedCommentData;
   }
 }

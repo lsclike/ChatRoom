@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   apiUrl: 'http://localhost:3001/api',
-  webSocketUrl: 'localhost:3001/cable'
+  webSocketUrl: 'localhost:3001/cable',
+  GoogleClientId: '581790841448-6ue7vno5n9n3rqvpu7jkaam8703m7llt.apps.googleusercontent.com'
 };
 
 /*

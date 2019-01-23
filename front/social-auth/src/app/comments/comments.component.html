@@ -1,3 +1,23 @@
-<p>
-  comments works!
-</p>
+<div class="container">
+  <div class="row" *ngFor="let comment of comments">
+    {{comment.message}}
+  </div>
+
+  <div class="row">
+    <form [formGroup]="messageForm" (ngSubmit)="submitMessage()">
+      <mat-form-field >
+        <textarea matInput placeholder="Please Enter the message"
+                  name="message"
+                  formControlName="message"
+                  required>
+        </textarea>
+      </mat-form-field>
+      <button mat-raised-button
+              color="primary"
+              type="submit"
+              [disabled]="this.messageForm.invalid"
+      >Submit</button>
+    </form>
+  </div>
+</div>
+

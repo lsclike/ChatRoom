@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   def self.create_user_for_google(data)
     where(uid: data["email"]).first_or_initialize.tap do |user|
+      if user.online?
+        return false
+      end
       user.provider="google_oauth2"
       user.uid=data["email"]
       user.email=data["email"]
@@ -16,7 +19,12 @@ class User < ActiveRecord::Base
       user.current_sign_in_at = Time.new
       user.password=Devise.friendly_token[0,20]
       user.password_confirmation=user.password
-      user.save!
+      if user.save
+        return user
+      else
+        render json: user.errors._to_json,
+               status: :unprocessable_entity
+      end
     end
   end
 

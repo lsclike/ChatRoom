@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   get '/api/users/logged_users' => 'users#index'
   post '/api/users/auth', to:'users#get_authorization'
   post 'api/users/sign_out' => 'users#sign_out'
+  post '/api/users/write_message' => 'users#write_message'
+  get 'api/comments/' => 'comments#index'
   mount ActionCable.server => '/cable'
 
 

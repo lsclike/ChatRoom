@@ -11,7 +11,7 @@ export class UserComponent implements OnInit {
   public users = [];
   public socketSubscription = this.actionCable.subscribeToUserSocket();
   constructor(private actionCable: ActionCableServiceService
-              , private userService: UsersService) { }
+              , private userService: UsersService) {}
 
   ngOnInit() {
     this.socketSubscription.subscribe(data => {
@@ -35,7 +35,6 @@ export class UserComponent implements OnInit {
           sign_in_at
         };
       });
-    console.log(this.users);
     });
   }
 }

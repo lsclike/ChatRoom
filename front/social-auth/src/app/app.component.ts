@@ -23,8 +23,14 @@ export class AppComponent implements OnInit {
   signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(
       userData => this.apiService.post('users/auth', {id_token: userData.idToken})
-        .subscribe(data => this.actionCable.getUserSub().perform('login', data))
-    );
+        .subscribe(data => { if (data['notice']) {
+          this.user = null;
+          alert('user has been logged');
+        } else {
+          this.actionCable.getUserSub().perform('login', data);
+        }
+        })
+    ).catch(error => console.log(error));
   }
 
   signOut(): void {

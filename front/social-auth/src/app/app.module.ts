@@ -15,6 +15,7 @@ import {
         MatSortModule,
         MatToolbarModule,
         MatProgressSpinnerModule,
+        MatFormFieldModule,
   } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from './service/api.service';
@@ -22,6 +23,8 @@ import { UserComponent } from './user/user.component';
 import { CommentsComponent } from './comments/comments.component';
 import {ActionCableServiceService} from './service/action-cable-service.service';
 import {UsersService} from './service/users.service';
+import {CommentsService} from './service/comments.service';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -44,13 +47,16 @@ import {UsersService} from './service/users.service';
     MatToolbarModule,
     MatProgressSpinnerModule,
     HttpClientModule,
+    MatFormFieldModule,
+    ReactiveFormsModule
   ],
   providers: [{
     provide: AuthServiceConfig,
     useFactory: getAuthServiceConfigs},
     ApiService,
     ActionCableServiceService,
-    UsersService
+    UsersService,
+    CommentsService
     ],
   bootstrap: [AppComponent]
 })
