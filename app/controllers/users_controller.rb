@@ -42,10 +42,6 @@ class UsersController < ApplicationController
     render json: { email: @current_user['email'] }
   end
 
-  def write_message
-    @current_user.comments.create(message: params['message']['message'])
-    render json: { message: params['message']['message']}
-  end
   private
 
   def set_current_user
