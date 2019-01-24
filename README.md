@@ -1,3 +1,6 @@
 # README
 
-**Front
+**__How to install__**
+
+Backend
+
