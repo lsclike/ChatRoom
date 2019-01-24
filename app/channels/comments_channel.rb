@@ -16,6 +16,9 @@ class CommentsChannel < ApplicationCable::Channel
     @new_comment.save
     response = Hash.new
     response['message'] = data['message']['message']
+    response['created_at'] = @new_comment.created_at
+    response['image'] = user.image
+    response['userName'] = user.name
     ActionCable.server.broadcast('comments', response)
   end
 end

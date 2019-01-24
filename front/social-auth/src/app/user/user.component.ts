@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActionCableServiceService} from '../service/action-cable-service.service';
 import {UsersService} from '../service/users.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-user',
@@ -17,6 +18,7 @@ export class UserComponent implements OnInit {
     this.socketSubscription.subscribe(data => {
       if (data.action === 'login') {
         const user =  data.user;
+        user.sign_in_at = moment(user.sign_in_at).fromNow();
         this.users.push(user);
       } else {
         this.users = this.users.filter( user => user.email !== data.email);
@@ -32,7 +34,7 @@ export class UserComponent implements OnInit {
           name,
           email,
           image,
-          sign_in_at
+          sign_in_at: moment(sign_in_at).fromNow()
         };
       });
     });

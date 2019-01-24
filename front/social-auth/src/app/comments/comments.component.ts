@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService, SocialUser} from 'angularx-social-login';
-import {ApiService} from '../service/api.service';
 import {CommentsService} from '../service/comments.service';
 import { FormBuilder, FormGroup, Validators , ReactiveFormsModule} from '@angular/forms';
 import {ActionCableServiceService} from '../service/action-cable-service.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-comments',
@@ -29,11 +29,20 @@ export class CommentsComponent implements OnInit {
     });
     this.commentsService.getAllcomments()
       .subscribe(res => this.comments = res.map(
-        values => { const{message, created_at, user_id} = values;
-                    return { message, created_at, user_id}; }
-
+        values => {
+          const {message, created_at, user} = values;
+          return {
+            message,
+            created_at: moment(created_at).fromNow(),
+            image: user.image,
+            userName: user.name
+          };
+        }
       ));
-    this.commentSocket.subscribe(data => this.comments.push(data));
+    this.commentSocket.subscribe(data => {
+      data.created_at = moment(data.created_at).fromNow();
+      this.comments.push(data);
+    });
   }
   submitMessage(): void {
     this.actionCable.getCommentSub().perform('send_message'
