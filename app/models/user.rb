@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
       user.uid=data["email"]
       user.email=data["email"]
       user.name=data["name"]
+      user.image = data["picture"]
       user.current_sign_in_at = Time.new
       user.password=Devise.friendly_token[0,20]
       user.password_confirmation=user.password

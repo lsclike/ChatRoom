@@ -1,3 +1,17 @@
-<ul >
-  <li *ngFor="let user of users">{{user.name}}</li>
-</ul>
+<mat-card>
+  <mat-card-title align="center">
+    Online Users ({{this.users.length}})
+  </mat-card-title>
+  <mat-card-content>
+    <div class="row" *ngFor="let user of users">
+      <div class="col">
+        <img [src]="user.image" class="img-fluid rounded-circle img-thumbnail float-left">
+      </div>
+      <div class="col">
+        UserName: {{user.name}}
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+

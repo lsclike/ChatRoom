@@ -27,7 +27,6 @@ export class AppComponent implements OnInit {
           this.user = null;
           alert('user has been logged');
         } else {
-          this.user['user_id'] = data['user']['user_id'];
           this.actionCable.getUserSub().perform('login', data);
         }
         })
