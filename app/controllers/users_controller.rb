@@ -27,6 +27,7 @@ class UsersController < ApplicationController
     else
       set_headers(parsed_response)
       render json: {  user: {
+                            user_id: @user['id'],
                             name: @user['name'],
                             email: @user['email'],
                             image: @user['image'],

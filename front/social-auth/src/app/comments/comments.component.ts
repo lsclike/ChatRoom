@@ -23,6 +23,7 @@ export class CommentsComponent implements OnInit {
     this.messageForm = this.formbuilder.group({
       message: ['', [Validators.required]]
     });
+
     this.authService.authState.subscribe((user) => {
       this.user = user;
     });
@@ -35,10 +36,10 @@ export class CommentsComponent implements OnInit {
     this.commentSocket.subscribe(data => this.comments.push(data));
   }
   submitMessage(): void {
-    this.commentsService.postMessage({email: this.user.email, message: this.messageForm.value})
-      .subscribe( data =>
-        this.actionCable.getCommentSub()
-        .perform('send_message', {message: data.message}));
+    this.actionCable.getCommentSub().perform('send_message'
+                                              , {email: this.user['email'],
+                                                      message: this.messageForm.value});
+
   }
 
 }
