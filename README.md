@@ -19,9 +19,10 @@
 
 **2. Front end**
   -
-  - 2.1. changing the api configuration at environment under environments
+  - 2.1. the front end files locate at front directory.
+  - 2.2. changing the api configurations at environment under environments
   directory to point to the backend url.
-  - 2.2. If you'd like to use current GoogleClientId, you need to
+  - 2.3. If you'd like to use current GoogleClientId, you need to
   run Angular in local environment and using default port 4200 or 4201.
-  - 2.3. npm install necessary dependency.
+  - 2.4. npm install necessary dependency.
   
