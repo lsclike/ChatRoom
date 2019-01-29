@@ -8,6 +8,9 @@ class UsersChannel < ApplicationCable::Channel
     # Any cleanup needed when channel is unsubscribed
   end
 
+  # login function
+  # @param: data => { user: { name, email, image, sign_in_at } }
+  # @return a response with user and action information to UserChannel subscribers
   def login(data)
     response = Hash.new
     response['user'] = data['user']
@@ -15,6 +18,9 @@ class UsersChannel < ApplicationCable::Channel
     ActionCable.server.broadcast('users', response)
   end
 
+  # sign out function
+  # @param: data => { email: log out user email address }
+  # @return: a response with user and action information to UserChannel subscribers
   def sign_out(data)
     response = Hash.new
     response['email'] = data['email']

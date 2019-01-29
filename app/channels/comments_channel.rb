@@ -8,6 +8,10 @@ class CommentsChannel < ApplicationCable::Channel
     # Any cleanup needed when channel is unsubscribed
   end
 
+  # create new comments according to data from front end
+  # @param: data => {email, message: message}
+  # create new comments with email and message information
+  # @return: response=> { message, created_at, user_image, userName } to CommentsChannel subscribers
   def send_message(data)
     @new_comment= Comment.new
     user = User.find_by_email(data['email'])

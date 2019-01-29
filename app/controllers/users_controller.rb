@@ -17,7 +17,10 @@ class UsersController < ApplicationController
     render json: @users.to_json
   end
 
-  # authorization api for google omniauth
+  # authorization api for google omniauth.
+  # @param: { id_token: user google account id token }
+  # @return: if user has already logged => render notice.
+  #          else return user data using json format.
   def get_authorization
     url = "https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=#{params["id_token"]}"
     parsed_response = HTTParty.get(url).parsed_response
@@ -37,6 +40,7 @@ class UsersController < ApplicationController
   end
 
   # sign_out function
+  # @return => current_user email address
   def sign_out
     @current_user.sign_out
     render json: { email: @current_user['email'] }
@@ -44,10 +48,13 @@ class UsersController < ApplicationController
 
   private
 
+  # get current user information
+  # @paras: email => get from front end request
   def set_current_user
     @current_user = User.find_by_email(params["email"])
   end
 
+  # set expire time in the header for front end
   def set_headers(parsed_response)
     headers['expire_at'] = parsed_response["exp"].to_s
   end

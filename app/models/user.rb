@@ -7,6 +7,12 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:google_oauth2]
   include DeviseTokenAuth::Concerns::User
   has_many :comments, dependent: :destroy
+
+  # create and save user information according data passed by users controller
+  # @param: data => { UserEmail, UserName, UserPicture }
+  # @return if the user is online  => return false
+  # @return if the user has successfully saved => return user entity
+  # @return error if there is any error occurred during the saving process
   def self.create_user_for_google(data)
     where(uid: data["email"]).first_or_initialize.tap do |user|
       if user.online?
@@ -23,17 +29,19 @@ class User < ActiveRecord::Base
       if user.save
         return user
       else
-        render json: user.errors._to_json,
+        render json: user.errors.to_json,
                status: :unprocessable_entity
       end
     end
   end
 
+  # sign out action => update last_sign_in_at time
   def sign_out
     self.last_sign_in_at = self.current_sign_in_at
     self.save
   end
 
+  # verify whether user is online or not
   def online?
     self.last_sign_in_at.present? ? self.current_sign_in_at > self.last_sign_in_at : true
   end

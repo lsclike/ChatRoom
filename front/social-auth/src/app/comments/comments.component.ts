@@ -47,7 +47,7 @@ export class CommentsComponent implements OnInit {
   submitMessage(): void {
     this.actionCable.getCommentSub().perform('send_message'
                                               , {email: this.user['email'],
-                                                      message: this.messageForm.value});
+                                                 message: this.messageForm.value });
 
   }
 
