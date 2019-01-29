@@ -8,7 +8,7 @@ import {Observable} from 'rxjs';
 export class UsersService {
 
   constructor(private api: ApiService) { }
-
+  // get online users from backEnd
   getLoggedUsers(): Observable<any> {
     return this.api.get('users/logged_users');
   }

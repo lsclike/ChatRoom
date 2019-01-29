@@ -8,12 +8,8 @@ import {Observable} from 'rxjs';
 export class CommentsService {
 
   constructor(private apiSerive: ApiService) { }
-
+  // get all existing comments from back end
   getAllcomments(): Observable<any> {
     return this.apiSerive.get('comments/');
-  }
-
-  postMessage(body): Observable<any> {
-    return this.apiSerive.post('users/write_message', body);
   }
 }

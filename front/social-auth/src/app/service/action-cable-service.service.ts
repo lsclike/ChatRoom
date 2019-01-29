@@ -15,7 +15,9 @@ export class ActionCableServiceService {
   }
 
   Init(): void {
+    // getting cable connection with back end server
     const cable = ActionCable.createConsumer(`ws:${environment.webSocketUrl}`);
+    // Subscribing UsersChannel
     this.userSub = cable.subscriptions.create('UsersChannel', {
       connected: () => {
         console.log('connected to users channel');
@@ -27,6 +29,7 @@ export class ActionCableServiceService {
         this.receivedUserData.next(data);
       }
     });
+    // Subscribing CommentsChannel
     this.commentSub = cable.subscriptions.create('CommentsChannel', {
       connected: () => {
         console.log('connected to comments channel');

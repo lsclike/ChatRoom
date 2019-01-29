@@ -8,9 +8,11 @@ export class ApiService {
   public base = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
+  // get requests for backend
   get(url) {
     return this.http.get(`${this.base}/${url}`);
   }
+  // post requests to backend
   post(url, body) {
     return this.http.post(`${this.base}/${url}`, body);
   }

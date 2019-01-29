@@ -2,33 +2,34 @@
   <mat-card-title align="center">
     Comments({{comments.length}})
   </mat-card-title>
-
-  <div class="row" *ngFor="let comment of comments">
-    <div class="col-2">
-      <img [src]="comment.image" class="img-fluid rounded-circle img-thumbnail float-left">
+  <mat-card-content>
+    <div class="row" *ngFor="let comment of comments">
+      <div class="col-2">
+        <img [src]="comment.image" class="img-fluid rounded-circle img-thumbnail float-left">
+      </div>
+      <div class="col">
+        <span class="userName">{{comment.userName}}</span>
+        <span class="post"> Post at: {{comment.created_at}}</span><br>
+        {{comment.message}}
+      </div>
     </div>
-    <div class="col">
-      <span class="userName">{{comment.userName}}</span>
-      <span class="post"> Post at: {{comment.created_at}}</span><br>
-      {{comment.message}}
-    </div>
-  </div>
 
-  <div class="row" *ngIf="user">
-    <form [formGroup]="messageForm" (ngSubmit)="submitMessage()">
-      <mat-form-field >
-        <textarea matInput placeholder="Please Enter the message"
-                  name="message"
-                  formControlName="message"
-                  required>
-        </textarea>
-      </mat-form-field>
-      <button mat-raised-button
-              color="primary"
-              type="submit"
-              [disabled]="this.messageForm.invalid"
-      >Submit</button>
-    </form>
-  </div>
+    <div class="row" *ngIf="user">
+      <form [formGroup]="messageForm" (ngSubmit)="submitMessage()">
+        <mat-form-field >
+          <textarea matInput placeholder="Please Enter the message"
+                    name="message"
+                    formControlName="message"
+                    required>
+          </textarea>
+        </mat-form-field>
+        <button mat-raised-button
+                color="primary"
+                type="submit"
+                [disabled]="this.messageForm.invalid"
+        >Submit</button>
+      </form>
+    </div>
+  </mat-card-content>
 </mat-card>
 

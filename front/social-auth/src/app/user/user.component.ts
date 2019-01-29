@@ -15,6 +15,7 @@ export class UserComponent implements OnInit {
               , private userService: UsersService) {}
 
   ngOnInit() {
+    // subscribe to UserChannel
     this.socketSubscription.subscribe(data => {
       if (data.action === 'login') {
         const user =  data.user;
@@ -24,7 +25,7 @@ export class UserComponent implements OnInit {
         this.users = this.users.filter( user => user.email !== data.email);
       }
     });
-
+    // get online users
     this.userService.getLoggedUsers().subscribe(res => {
       // get logged in users
       this.users = res.map( values => {
